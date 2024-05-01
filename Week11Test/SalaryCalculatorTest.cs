@@ -72,25 +72,48 @@ namespace Week11Test
         }
 
         /// <summary>
+        /// Test if the wage imports work
+        /// </summary>
+        [TestMethod]
+        public void TestImportRecords()
+        {
+            //Arrange
+            //Arrange Calculator and Imported records
+            SalaryCalculator sc = new SalaryCalculator();
+            var records = sc.ImportWages();
+
+            //Act
+            //We could test individual records here
+            //decimal record1 = records[1];
+
+            //Assert
+            //Assert.AreEqual((decimal)25.754, record1);
+            Assert.IsNotNull(records);
+        }
+
+        /// <summary>
         /// This unit test checks the hourly wage of my salary calcultor
         /// </summary>
         [TestMethod]
         public void HourlyWageTest()
         {
             // Arrange
-            // Control values are $25 an hour
+            // Control values are $25 an hour -> 25.754
             SalaryCalculator sc = new SalaryCalculator();
             var records = sc.ImportWages();
             //Find records with match lastnames, with or without tax index only compare either
 
-            decimal annualSalary = sc.GetAnnualSalary(records[1]);//25 an hour to meet other conditions
+            decimal annualSalary = sc.GetAnnualSalary(records[1]);//25 an hour to meet other conditions ->25.754
+            decimal annualSalary2 = sc.GetAnnualSalary(records[2]);//25.999 is the value we are passing
 
             // Act
             //decimal hourlyWage = sc.GetHourlyWage(52000);//$52000 per year
             decimal hourlyWage = sc.GetHourlyWage(annualSalary);//$52000 per year
+            decimal hourlyWage2 = sc.GetHourlyWage(annualSalary2);
 
             // Assert   
-            Assert.AreEqual(records[1], hourlyWage); //Expect $25 an hour
+            Assert.AreEqual((decimal)25.754, hourlyWage); //Expect $25.754 an hour record at [1]
+            Assert.AreEqual((decimal)25.999, hourlyWage2);//Expect this to be $25.999 an hour record at [2]
         }
 
         /// <summary>

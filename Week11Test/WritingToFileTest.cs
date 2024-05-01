@@ -7,10 +7,10 @@ namespace Week11Test
     public class WritingToFileTest
     {
         /// <summary>
-        /// This unit test checks the annual salary calculations of the salary calculator 
+        /// This unit test Writting to file
         /// </summary>
         [TestMethod]
-        public void StandardWriteTest()
+        public void StandardWriteNumberTest()
         {
             // Arrange
             StandardWrite standardWrite = new StandardWrite();
